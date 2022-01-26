@@ -1,5 +1,5 @@
-const Test = artifacts.require("./Test.sol");
+const intermediateStage = artifacts.require("./IntermediateStage.sol");
 
 module.exports = function (deployer) {
-  deployer.deploy(Test);
+  deployer.deploy(intermediateStage);
 };
