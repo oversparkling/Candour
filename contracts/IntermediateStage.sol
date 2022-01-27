@@ -11,7 +11,8 @@ contract IntermediateStage{
     //     personInCharge = _personInCharge;
     //     dateTime = block.timestamp;
     // }
-        constructor() {
+
+    constructor() {
         companyName = "Test";
         personInCharge = "Test";
         dateTime = block.timestamp;
