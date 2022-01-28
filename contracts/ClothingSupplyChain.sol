@@ -15,7 +15,7 @@ contract ClothingSupplyChain {
         // console.log("Hello");
     }
 
-        function addBasicDetails(string memory _registrationNo,
+        function setBasicDetails(string memory _registrationNo,
                              string memory _farmerName,
                              string memory _farmAddress,
                              string memory _exporterName,
