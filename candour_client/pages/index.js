@@ -49,8 +49,8 @@ const App = () => {
         const batchNo1 = await state.contract.methods
             .setBasicDetails("test", "test", "test", "test", "test")
             .send({ from: accounts[0], gasPrice: "200" });
-        console.log(batchNo1);
-        setBatchNo(batchNo1);
+        console.log(batchNo1.events.CottonHarvested.returnValues.batchNo);
+        setBatchNo(batchNo1.events.CottonHarvested.returnValues.batchNo);
         // console.log(test.call().send({ from: state.accounts[0] }))
     };
 
