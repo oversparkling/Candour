@@ -64,11 +64,11 @@ const App = () => {
             ClothingSupplyChain.abi,
             deployedNetwork && deployedNetwork.address
         );
-        console.log(state.contract.options);
-        await state.contract.methods
+
+        const returnValue = await state.contract.methods
             .getBasicDetails(batchNo)
             .send({ from: accounts[0], gasPrice: "200" });
-
+        console.log(returnValue)
         // console.log(test.call().send({ from: state.accounts[0] }))
     };
     if (!state.web3) {
