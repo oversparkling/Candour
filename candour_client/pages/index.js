@@ -99,7 +99,6 @@ const App = () => {
             ) : (
                 <span></span>
             )}
-            <p>Your Truffle Box is installed and ready</p>
             <input
                 className="border mt-5 px-5"
                 placeholder="Registration No."
