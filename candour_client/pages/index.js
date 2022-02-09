@@ -1,8 +1,8 @@
 import React, { Component, useEffect, useState } from "react";
 import ClothingSupplyChain from "../../build/contracts/ClothingSupplyChain.json";
-import detectEthereumProvider from '@metamask/detect-provider';
+import detectEthereumProvider from "@metamask/detect-provider";
 
-import Web3 from 'web3'
+import Web3 from "web3";
 import getWeb3 from "./getWeb3";
 
 const App = () => {
@@ -11,7 +11,7 @@ const App = () => {
         accounts: null,
         contract: null,
     });
-    const [batchNo,setBatchNo] = useState()
+    const [batchNo, setBatchNo] = useState();
     useEffect(() => {
         const init = async () => {
             try {
@@ -46,30 +46,31 @@ const App = () => {
             deployedNetwork && deployedNetwork.address
         );
         console.log(state.contract.options);
-        await state.contract.methods
+        const batchNo1 = await state.contract.methods
             .setBasicDetails("test", "test", "test", "test", "test")
             .send({ from: accounts[0], gasPrice: "200" });
+        console.log(batchNo1);
+        setBatchNo(batchNo1);
         // console.log(test.call().send({ from: state.accounts[0] }))
     };
 
-    const getBasicDetails = async (batchNo) => {
-      const provider = await detectEthereumProvider();
-      const web3 = new Web3(provider);
-      const accounts = await web3.eth.getAccounts();
-      const networkId = await web3.eth.net.getId();
-      const deployedNetwork = ClothingSupplyChain.networks[networkId];
-      const instance = new web3.eth.Contract(
-          ClothingSupplyChain.abi,
-          deployedNetwork && deployedNetwork.address
-      );
-      console.log(state.contract.options);
-      const batchNo = await state.contract.methods
-          .getBasicDetails(batchNo)
-          .send({ from: accounts[0], gasPrice: "200" });
-        console.log(batchNo)
-        setBatchNo(batchNo)
-      // console.log(test.call().send({ from: state.accounts[0] }))
-  };
+    const getBasicDetails = async () => {
+        const provider = await detectEthereumProvider();
+        const web3 = new Web3(provider);
+        const accounts = await web3.eth.getAccounts();
+        const networkId = await web3.eth.net.getId();
+        const deployedNetwork = ClothingSupplyChain.networks[networkId];
+        const instance = new web3.eth.Contract(
+            ClothingSupplyChain.abi,
+            deployedNetwork && deployedNetwork.address
+        );
+        console.log(state.contract.options);
+        await state.contract.methods
+            .getBasicDetails(batchNo)
+            .send({ from: accounts[0], gasPrice: "200" });
+
+        // console.log(test.call().send({ from: state.accounts[0] }))
+    };
     if (!state.web3) {
         return <div>Loading Web3, accounts, and contract...</div>;
     }
@@ -87,7 +88,9 @@ const App = () => {
                 App.js.
             </p>
             <button onClick={() => setBasicDetails()}>setBasicDetails</button>
-            <button onClick={() => getBasicDetails(batchNo)}>getBasicDetails</button>
+            <button onClick={() => getBasicDetails(batchNo)}>
+                getBasicDetails
+            </button>
         </div>
     );
 };
