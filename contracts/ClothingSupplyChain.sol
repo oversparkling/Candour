@@ -10,9 +10,18 @@ contract ClothingSupplyChain {
     event CottonBatchNo(address indexed user, string registrationNo,string farmerName,string farmAddress,string exporterName,string importerName);
     event FabricManufactured(address indexed user, address indexed batchNo);
     event ShirtManufactured(address indexed user, address indexed batchNo);
+    event RetrievedAll(address indexed user, SupplyChainStorage.basicDetails[] result);
+
+    struct basicDetails{
+        string registrationNo;
+        string farmerName;
+        string farmAddress;
+        string exporterName;
+        string importerName;
+    }
+
     constructor(address _supplyChainAddress) public{
         supplyChainStorage = SupplyChainStorage(_supplyChainAddress);
-        // console.log("Hello");
     }
 
         function setBasicDetails(string memory _registrationNo,
@@ -31,7 +40,7 @@ contract ClothingSupplyChain {
         emit CottonHarvested(msg.sender, batchNo); 
         
         return (batchNo);
-    }  
+    }
      function getBasicDetails(address _batchNo) public  returns (string memory registrationNo,
                                                                      string memory farmerName,
                                                                      string memory farmAddress,
@@ -41,6 +50,12 @@ contract ClothingSupplyChain {
         (registrationNo, farmerName, farmAddress, exporterName, importerName) = supplyChainStorage.getBasicDetails(_batchNo);  
         emit CottonBatchNo(msg.sender,registrationNo, farmerName, farmAddress, exporterName, importerName);
         return (registrationNo, farmerName, farmAddress, exporterName, importerName);
+    }
+
+    function getAllBasicDetails() public returns(SupplyChainStorage.basicDetails[] memory result){
+        SupplyChainStorage.basicDetails[] memory tempResult = supplyChainStorage.getAllBasicDetails();
+        emit RetrievedAll(msg.sender, tempResult);
+        return(tempResult);
     }
 
 }
