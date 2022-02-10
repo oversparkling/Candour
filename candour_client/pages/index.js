@@ -1,10 +1,10 @@
-import React, { Component, useEffect, useState } from "react";
+import React, {Component, useEffect, useState} from "react";
 import ClothingSupplyChain from "../../build/contracts/ClothingSupplyChain.json";
 import detectEthereumProvider from "@metamask/detect-provider";
 
 import Web3 from "web3";
 import getWeb3 from "./getWeb3";
-import { Button, Input } from "antd";
+import {Button, Input} from "antd";
 
 const App = () => {
     const [state, setState] = useState({
@@ -32,7 +32,7 @@ const App = () => {
                     ClothingSupplyChain.abi,
                     deployedNetwork && deployedNetwork.address
                 );
-                setState({ web3, accounts, contract: instance });
+                setState({web3, accounts, contract: instance});
             } catch (error) {
                 alert(
                     `Failed to load web3, accounts, or contract.
@@ -64,7 +64,7 @@ const App = () => {
                 exporterName,
                 importerName
             )
-            .send({ from: accounts[0], gasPrice: "200" });
+            .send({from: accounts[0], gasPrice: "200"});
         console.log(batchNo1.events.CottonHarvested.returnValues.batchNo);
         setBatchNo(batchNo1.events.CottonHarvested.returnValues.batchNo);
         // console.log(test.call().send({ from: state.accounts[0] }))
@@ -83,7 +83,7 @@ const App = () => {
 
         const returnValue = await state.contract.methods
             .getBasicDetails(batchNo)
-            .send({ from: accounts[0], gasPrice: "200" });
+            .send({from: accounts[0], gasPrice: "200"});
         console.log(returnValue);
         setReturnValue(returnValue);
         // console.log(test.call().send({ from: state.accounts[0] }))
