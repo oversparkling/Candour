@@ -12,6 +12,7 @@ const App = () => {
         accounts: null,
         contract: null,
     });
+
     const [registrationNo, setRegistrationNo] = useState("");
     const [farmerName, setFarmerName] = useState("");
     const [farmAddress, setFarmAddress] = useState("");
@@ -19,6 +20,7 @@ const App = () => {
     const [importerName, setImporterName] = useState("");
     const [batchNo, setBatchNo] = useState("");
     const [returnValue, setReturnValue] = useState(null);
+    const [allDetails, setAllDetails] = useState();
     useEffect(() => {
         const init = async () => {
             try {
@@ -40,6 +42,7 @@ const App = () => {
             }
         };
         init();
+        // "0x69b6bF0d2Daaad6cBEbBd62e4AEA94ce5Cf93eF4"
         console.log(state.web3);
     }, []);
     const setBasicDetails = async () => {
@@ -83,6 +86,23 @@ const App = () => {
             .send({ from: accounts[0], gasPrice: "200" });
         console.log(returnValue);
         setReturnValue(returnValue);
+        // console.log(test.call().send({ from: state.accounts[0] }))
+    };
+    const getAllBasicDetails = async () => {
+        const provider = await detectEthereumProvider();
+        const web3 = new Web3(provider);
+        const accounts = await web3.eth.getAccounts();
+        const networkId = await web3.eth.net.getId();
+        const deployedNetwork = ClothingSupplyChain.networks[networkId];
+        const instance = new web3.eth.Contract(
+            ClothingSupplyChain.abi,
+            deployedNetwork && deployedNetwork.address
+        );
+        const returnValue = await state.contract.methods
+            .getAllBasicDetails()
+            .send({ from: accounts[0], gasPrice: "200" });
+        console.log(returnValue);
+        setAllDetails(returnValue.events.RetrievedAll.returnValues.result);
         // console.log(test.call().send({ from: state.accounts[0] }))
     };
     if (!state.web3) {
@@ -174,6 +194,55 @@ const App = () => {
             <Button onClick={() => getBasicDetails(batchNo)}>
                 getBasicDetails
             </Button>
+            <Button onClick={() => getAllBasicDetails()}>
+                getAllBasicDetails
+            </Button>
+            <div className=" w-full flex-col flex">
+                <div className="p-8 flex-col flex items-center">
+                    {allDetails && allDetails.map((entries) => {
+                        return (
+                            <div className="flex-col flex mb-5">
+                                <span>
+                                    Registration No. is:{" "}
+                                    {
+                                        entries.registrationNo
+                                            
+                                    }
+                                </span>
+                                <span>
+                                    Farmer's name is:{" "}
+                                    {
+                                        entries.farmerName
+                                            
+                                    }
+                                </span>
+
+                                <span>
+                                    Farm Address is:{" "}
+                                    {
+                                        entries.farmAddress
+                                            
+                                    }
+                                </span>
+                                <span>
+                                    Exporter Name is:{" "}
+                                    {
+                                        entries.exporterName
+                                            
+                                    }
+                                </span>
+                                <span>
+                                    Importer Name is:{" "}
+                                    {
+                                        entries.importerName
+                                            
+                                    }
+                                </span>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
         </div>
     );
 };
