@@ -21,7 +21,7 @@ contract SupplyChainStorage{
         string manufacturerName;
         string personInCharge;
     }
-
+    address[] public batchNoArray;
     //SuppyChain contract should contain these
     basicDetails basicDetailsData;
     fabricManufacturer fabricManufacturerData;
@@ -54,7 +54,7 @@ contract SupplyChainStorage{
             basicDetailsData.exporterName = _exporterName;
             basicDetailsData.importerName = _importerName;
             batchBasicDetails[batchNo] = basicDetailsData;
-
+            batchNoArray.push(batchNo);
             return batchNo;
         }
 
@@ -67,7 +67,17 @@ contract SupplyChainStorage{
                              string memory importerName) {
         
         basicDetails memory tmpData = batchBasicDetails[_batchNo];
-        
+
         return (tmpData.registrationNo,tmpData.farmerName,tmpData.farmAddress,tmpData.exporterName,tmpData.importerName);
+    }
+    
+    function getAllBasicDetails() public view returns(basicDetails[] memory result ){
+        uint length = batchNoArray.length;
+        basicDetails[] memory basicDetailsArray = new basicDetails[](length);
+        for (uint i = 0; i < batchNoArray.length; i++){
+            basicDetails memory basicDetail = batchBasicDetails[batchNoArray[i]];
+            basicDetailsArray[i] = basicDetail;
+        }
+        return basicDetailsArray;
     }
 } 
