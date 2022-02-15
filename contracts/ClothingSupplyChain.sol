@@ -14,7 +14,7 @@ contract ClothingSupplyChain {
 
     struct basicDetails{
         string registrationNo;
-        
+
         string farmerName;
         string farmAddress;
         string exporterName;
