@@ -6,6 +6,7 @@ import {useRouter} from "next/router";
 import Web3 from "web3";
 import getWeb3 from "./getWeb3";
 import { Button, Input } from "antd";
+import Loading from "./Loading";
 
 const App = () => {
     const [state, setState] = useState({
@@ -13,6 +14,7 @@ const App = () => {
         accounts: null,
         contract: null,
     });
+    const [loading,setLoading] = useState(true)
     const router = useRouter()
     const [registrationNo, setRegistrationNo] = useState("");
     const [farmerName, setFarmerName] = useState("");
@@ -106,7 +108,7 @@ const App = () => {
         // console.log(test.call().send({ from: state.accounts[0] }))
     };
     if (!state.web3) {
-        return <div>Loading Web3, accounts, and contract...</div>;
+        return(<Loading/>)
     }
     return (
         // <div className="flex-col flex items-center justify-center">
