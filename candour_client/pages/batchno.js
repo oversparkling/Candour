@@ -52,7 +52,7 @@ function pid() {
         console.log(result);
     }, [router]);
     return (
-        <div className="w-full h-screen flex-col flex items-center justify-center p-5">
+        <div className="w-full flex-col flex items-center justify-center p-5">
             <div className="flex-row flex w-full justify-between p-5 items-center top-0 absolute">
                 <div className="w-1/6">
                     <Image
@@ -76,10 +76,14 @@ function pid() {
             <Divider />
             <div className=" w-full px-8">
                 <div className="flex-col w-full ">
-                    <div>
+                    <div >
                         <span className="font-bold">
                             Cumulative Sustainability Meter
                         </span>
+                    </div>
+                    <Image src = "/cumulative.png" width= {2000} height = {10} />
+                    <div className="w-full px-16">
+                        <Image src = "/tag.png" width={20} height = {20} />
                     </div>
                 </div>
                 <div className="flex-col w-full mt-5">
@@ -94,20 +98,65 @@ function pid() {
                 </div>
                 <div className="flex-col w-full mt-5">
                     <div>
-                        <span className="font-bold">Seller Company Name</span>
+                        <span className="font-bold">Registration Number</span>
                         <div className="w-full mt-2 p-3 bg-gray-100 rounded-xl border">
                             <span className="text-gray-400">
-                                {result ? result.events.CottonBatchNo.returnValues.farmAddress : ""}
+                                {result
+                                    ? result.events.CottonBatchNo.returnValues
+                                          .registrationNo
+                                    : ""}
                             </span>
                         </div>
                     </div>
                 </div>
                 <div className="flex-col w-full mt-5">
                     <div>
-                        <span className="font-bold">Logistics Partner</span>
+                        <span className="font-bold">Farmer's Name</span>
                         <div className="w-full mt-2 p-3 bg-gray-100 rounded-xl border">
                             <span className="text-gray-400">
-                                {result ? result.events.CottonBatchNo.returnValues.importerName : ""}
+                                {result
+                                    ? result.events.CottonBatchNo.returnValues
+                                          .farmerName
+                                    : ""}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div className="flex-col w-full mt-5">
+                    <div>
+                        <span className="font-bold">Farm Address</span>
+                        <div className="w-full mt-2 p-3 bg-gray-100 rounded-xl border">
+                            <span className="text-gray-400">
+                                {result
+                                    ? result.events.CottonBatchNo.returnValues
+                                          .farmAddress
+                                    : ""}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div className="flex-col w-full mt-5">
+                    <div>
+                        <span className="font-bold">Exporter's Partner</span>
+                        <div className="w-full mt-2 p-3 bg-gray-100 rounded-xl border">
+                            <span className="text-gray-400">
+                                {result
+                                    ? result.events.CottonBatchNo.returnValues
+                                          .exporterName
+                                    : ""}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div className="flex-col w-full mt-5">
+                    <div>
+                        <span className="font-bold">Importer's Partner</span>
+                        <div className="w-full mt-2 p-3 bg-gray-100 rounded-xl border">
+                            <span className="text-gray-400">
+                                {result
+                                    ? result.events.CottonBatchNo.returnValues
+                                          .importerName
+                                    : ""}
                             </span>
                         </div>
                     </div>

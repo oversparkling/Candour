@@ -68,7 +68,6 @@ const App = () => {
             .send({ from: accounts[0], gasPrice: "200" });
         console.log(batchNo1.events.CottonHarvested.returnValues.batchNo);
         setBatchNo(batchNo1.events.CottonHarvested.returnValues.batchNo);
-        // console.log(test.call().send({ from: state.accounts[0] }))
     };
 
     const getBasicDetails = async () => {
@@ -263,7 +262,8 @@ const App = () => {
             <div className="flex-col flex text-center w-full items-center	px-10">
                 <span className="text-2xl">Please scan / enter Batch No.</span>
                 <span>You can find the batch number attached to products</span>
-                <div className=" w-full">
+                <Image src={"/scanme.png"} width ={150} height = {200} />
+                <div className=" w-full mt-2">
                     <input className="md:w-1/2 w-full border p-3 rounded-2xl " placeholder="Input product Batch No." onChange={(e) => setBatchNo(e.target.value)}/>
                 </div>
                 {/* <Button className="mt-2 ">Scan QR Code</Button> */}
