@@ -1,4 +1,4 @@
-# Candour:tm:
+# Candour™
 ## A web-application that for businesses to document their supply chain processes on the Blockchain
 
 > By **G1T7**
