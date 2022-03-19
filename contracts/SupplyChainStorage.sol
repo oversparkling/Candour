@@ -116,11 +116,11 @@ contract SupplyChainStorage {
         fabricManufacturer memory tmpData = batchFabricManufacturer[_batchNo];
 
         return (
-            tmpData.fabricType,
             tmpData.factoryName,
-            tmpData.pocId,
-            tmpData.pocName,
+            tmpData.fabricType,
             tmpData.dyeUsed,
+            tmpData.pocName,
+            tmpData.pocId,
             tmpData.waterUsed
         );
     }
@@ -128,16 +128,18 @@ contract SupplyChainStorage {
     //Requires the batchNo which is the identifer for the individual structs
     function setFabricDetails(
         address _batchNo,
-        string memory factoryName,
-        string memory fabricType,
-        string memory dyeUsed,
+        string memory _factoryName,
+        string memory _fabricType,
+        string memory _dyeUsed,
         string memory _pocName,
-        string memory _pocId
+        string memory _pocId,
+        string memory _waterUsed
     ) public returns (address) {
-        fabricManufacturerData.factoryName = factoryName;
-        fabricManufacturerData.fabricType = fabricType;
-        fabricManufacturerData.dyeUsed = dyeUsed;
+        fabricManufacturerData.factoryName = _factoryName;
+        fabricManufacturerData.fabricType = _fabricType;
+        fabricManufacturerData.dyeUsed = _dyeUsed;
         fabricManufacturerData.pocId = _pocId;
+        fabricManufacturerData.waterUsed = _waterUsed;
         fabricManufacturerData.pocName = _pocName;
         batchFabricManufacturer[_batchNo] = fabricManufacturerData;
     }

@@ -34,7 +34,10 @@ function pid() {
                 );
                 setState({ web3, accounts, contract: instance });
                 if (batchno != undefined) {
+                    console.log(instance)
                     const returnValue = await instance.methods
+                        // .getFabricDetails(batchno)
+                        // .setFabricDetails(batchno,"test","test","test","test","test","test")
                         .getBasicDetails(batchno)
                         .send({ from: accounts[0] });
                     setResult(returnValue);

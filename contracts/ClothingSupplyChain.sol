@@ -14,6 +14,16 @@ contract ClothingSupplyChain {
         string importerName
     );
     event FabricManufactured(address indexed user, address indexed batchNo);
+    event FabricBatchNo(
+        address indexed user,
+        string factoryName,
+        string fabricType,
+        string dyeUsed,
+        string pocName,
+        string pocId,
+        string waterUsed
+    );
+
     event ShirtManufactured(address indexed user, address indexed batchNo);
     event RetrievedAll(
         address indexed user,
@@ -107,24 +117,60 @@ contract ClothingSupplyChain {
     }
 
     function setFabricDetails(
-        address _batchNo,
+        address batchNo,
         string memory factoryName,
         string memory fabricType,
         string memory dyeUsed,
-        string memory _pocName,
-        string memory _pocId
+        string memory pocName,
+        string memory pocId,
+        string memory waterUsed
     ) public returns (address) {
         supplyChainStorage.setFabricDetails(
-            _batchNo,
+            batchNo,
+            factoryName,
+            fabricType,
+            dyeUsed,
+            pocName,
+            pocId,
+            waterUsed
+        );
+
+        emit FabricManufactured(msg.sender, batchNo);
+
+        return (batchNo);
+    }
+
+
+
+    function getFabricDetails(address _batchNo)
+        public
+        returns (
+            string memory factoryName,
+            string memory fabricType,
+            string memory dyeUsed,
+            string memory _pocName,
+            string memory _pocId,
+            string memory _waterUsed
+        )
+    {
+        /* Call Storage Contract */
+        (
             factoryName,
             fabricType,
             dyeUsed,
             _pocName,
-            _pocId
+            _pocId,
+            _waterUsed
+        ) = supplyChainStorage.getFabricDetails(_batchNo);
+        emit FabricBatchNo(
+            msg.sender,
+            factoryName,
+            fabricType,
+            dyeUsed,
+            _pocName,
+            _pocId,
+            _waterUsed
         );
-
-        emit CottonHarvested(msg.sender, _batchNo);
-
-        return (_batchNo);
+        return (factoryName, fabricType, dyeUsed, _pocName, _pocId, _waterUsed);
     }
 }
