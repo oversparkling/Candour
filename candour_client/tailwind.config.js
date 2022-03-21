@@ -29,7 +29,6 @@ module.exports = {
                 header: ["SF Pro Semibold"],
                 prints: ["SF Pro Regular"],
                 title: ["SF Pro Fullbold"],
-                comic: ["comic"]
             },
         },
     },
