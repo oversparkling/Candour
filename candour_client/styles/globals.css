@@ -33,8 +33,4 @@ a {
       font-family: 'SF Pro Fullbold';
       src: url('../public/fonts/FontsFree-Net-SFProText-Bold.ttf');
   }
-  @font-face {
-      font-family: Comic;
-      src: url('../public/fonts/comic.ttf');
-  }
 }
