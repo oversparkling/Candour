@@ -61,7 +61,7 @@ function pid() {
     }
 
     return (
-        <div className="flex-col flex pt-7 px-4 lg:pb-10 pb-28 bg-red bg-cover lg:px-10" style={{ backgroundPosition: "left top" }}>
+        <div className="flex-col flex pt-7 px-4 lg:pb-10 pb-28 bg-teal bg-cover lg:px-10" style={{ backgroundPosition: "left top" }}>
             <div className="grid grid-cols-6 gap-4 pb-6">
                 <div className="col-start-1 col-span-2 pl-5"><img onClick={() => router.push("/")}
                     src="/navbarlogo.png"
