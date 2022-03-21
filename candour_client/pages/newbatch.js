@@ -99,7 +99,7 @@ function newbatch(props) {
                     <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Registration Number</label>
                     <div className="flex justify-center">
                         <div className="w-full inline-flex h-12">
-                            <input onChange={(e) => setRegistrationNo(e.target.value)} type="text" placeholder="Unique identifier for this good" className="focus:border-blue-900 rounded-none rounded-l-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
+                            <input onChange={(e) => setRegistrationNo(e.target.value)} type="text" placeholder="Unique identifier for this good" className="focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
                         </div>
                     </div>
                 </div>
@@ -107,7 +107,7 @@ function newbatch(props) {
                     <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Farmer's Name</label>
                     <div className="flex justify-center">
                         <div className="w-full inline-flex h-12">
-                            <input onChange={(e) => setFarmerName(e.target.value)} type="text" placeholder="Name of farmer that harvested" className="focus:border-blue-900 rounded-none rounded-l-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
+                            <input onChange={(e) => setFarmerName(e.target.value)} type="text" placeholder="Name of farmer that harvested" className="focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
                         </div>
                     </div>
                 </div>
@@ -115,7 +115,7 @@ function newbatch(props) {
                     <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Farm's Address</label>
                     <div className="flex justify-center">
                         <div className="w-full inline-flex h-12">
-                            <input onChange={(e) => setFarmAddress(e.target.value)} type="text" placeholder="Where the farm is located" className="focus:border-blue-900 rounded-none rounded-l-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
+                            <input onChange={(e) => setFarmAddress(e.target.value)} type="text" placeholder="Where the farm is located" className="focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
                         </div>
                     </div>
                 </div>
@@ -123,7 +123,7 @@ function newbatch(props) {
                     <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Exporter's Name</label>
                     <div className="flex justify-center">
                         <div className="w-full inline-flex h-12">
-                            <input onChange={(e) => setExporterName(e.target.value)} type="text" placeholder="Name of exporter company" className="focus:border-blue-900 rounded-none rounded-l-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
+                            <input onChange={(e) => setExporterName(e.target.value)} type="text" placeholder="Name of exporter company" className="focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
                         </div>
                     </div>
                 </div>
@@ -131,7 +131,109 @@ function newbatch(props) {
                     <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Importer's Name</label>
                     <div className="flex justify-center">
                         <div className="w-full inline-flex h-12">
-                            <input onChange={(e) => setImporterName(e.target.value)} type="text" placeholder="Name of importer company" className="focus:border-blue-900 rounded-none rounded-l-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
+                            <input onChange={(e) => setImporterName(e.target.value)} type="text" placeholder="Name of importer company" className="focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className=" w-full mt-2 text-center lg:px-20">
+                    <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Water Usage</label>
+                    <div className="flex justify-center">
+                        <div className="w-full inline-flex h-12">
+                            <input type="text" placeholder="Name of importer company" className="focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
+                        </div>
+                    </div>
+                </div>
+                <div className=" w-full mt-2 text-center lg:px-20">
+                    <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Energy Usage</label>
+                    <div className="flex justify-center">
+                        <div className="w-full inline-flex h-12">
+                            <input type="text" placeholder="Name of importer company" className="focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
+                        </div>
+                    </div>
+                </div>
+                <div className=" w-full mt-2 text-center lg:px-20">
+                    <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Chemical Usage</label>
+                    <div className="flex justify-center">
+                        <div className="w-full inline-flex h-12">
+                            <input type="text" placeholder="Name of importer company" className="focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
+                        </div>
+                    </div>
+                </div>
+                <div className=" w-full mt-2 text-center lg:px-20">
+                    <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Check all relevant fields</label>
+                    <div className="flex text-left">
+                        <div className="w-full">
+                            <div className="flex-container">
+                                <div className="flex-container pl-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="" id="flexCheckDefault" />
+                                        <label class="block form-check-label text-gray-800 text-sm" for="flexCheckDefault">
+                                            We do not use any child labour in our production.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="" id="flexCheckChecked" />
+                                        <label class="block form-check-label text-gray-800" for="flexCheckChecked">
+                                            We respect the personal dignity, privacy and rights of workers.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="" id="flexCheckChecked" />
+                                        <label class="block form-check-label text-gray-800" for="flexCheckChecked">
+                                            We have a non-discriminatory hiring process.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="" id="flexCheckChecked" />
+                                        <label class="block form-check-label text-gray-800" for="flexCheckChecked">
+                                            We minimise and dispose of waste responsibly.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="" id="flexCheckChecked" />
+                                        <label class="block form-check-label text-gray-800" for="flexCheckChecked">
+                                            We recycle water during our production process.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="" id="flexCheckChecked" />
+                                        <label class="block form-check-label text-gray-800" for="flexCheckChecked">
+                                            We use renewable energy (i.e. Solar panels) where we can.
+                                        </label>
+                                    </div>
+                                    <div class="form-check w-full">
+                                        <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="" id="flexCheckChecked" />
+                                        <label class="block form-check-label text-gray-800" for="flexCheckChecked">
+                                            If any, animals involved are treated in accordance with EC requirements.
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="h-48 w-full mt-2 text-center lg:px-20">
+                    <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Remarks</label>
+                    <div className="flex justify-center">
+                        <div className="w-full inline-flex h-12">
+                            <textarea placeholder="Additional information for disclosure" className="h-40 resize-none focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 "></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div className="h-48 w-full mt-2 text-center lg:px-20">
+                    <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Remarks</label>
+                    <div className="flex justify-center" style={{ border: "dashed 1px lightgray" }}>
+                        <div className="w-full h-32 inline-flex h-12">
+                            <div className="box-border w-full p-4 items-center self-center">
+                                <div className="items-center flex-col flex w-full tracking-tighter text-gray-400"> <svg className="w-8 h-8" fill="lightgray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                                </svg><div>
+                                        Drag and drop your images here.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
