@@ -364,7 +364,7 @@ const App = () => {
         //         <span onClick={()=>router.push('/newbatch')} className="text-xs text-blue-500 cursor-pointer underline mt-2">Not this? Start a new batch</span>
         //     </div>
         // </div>
-        <div className="w-full h-screen flex-col flex pt-7 px-4 lg:pb-10 pb-28 bg-standard bg-cover lg:px-10" style={{ backgroundPosition: "left top" }}>
+        <div className="pt-7 px-4 lg:pb-10 pb-28 bg-standard bg-cover lg:px-10" style={{ backgroundPosition: "left top" }}>
             <div className="grid grid-cols-6 gap-4 pb-6">
                 <div className="col-start-1 col-span-2 pl-5"><img
                     src="/navbarlogo.png"
@@ -376,13 +376,15 @@ const App = () => {
                 </div>
             </div>
 
-            <div className="w-full h-full bg-white shadow-lg rounded-lg px-5 pt-5 lg:h-full lg:px-7 lg:text-center md:text-center">
-                <h3 className="font-header text-xl tracking-tighter mb-1 text-black-900 lg:text-2xl lg:pt-2">Add / View Batch</h3>
+            <div className="bg-white shadow-lg rounded-lg px-5 pt-5 lg:h-full lg:px-7 lg:text-center md:text-center">
+                <h3 className="font-header text-xl tracking-tighter mb-1 text-black-900 lg:text-2xl lg:pt-2">Add / View Batch <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="cursor-pointer ml-0.5 mb-0.5 item-center inline bi bi-question-circle-fill" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+</svg></h3>
                 <p className="text-black-800 text-xs tracking-tighter leading-none font-prints lg:text-sm">Upload / scan receipt or input product batch number to begin. Contact your suppliers to find out more.</p>
-                <div className="lg:h-1/3 md:h-1/3 sm:h-1/3 h-1/3 text-center">
-                    <img src="/qrscan.gif" className="p-8 inline h-full w-auto" />
+                <div className="lg:h-60 sm:h-40 md:h-56 xl:h-56 2xl:h-56 h-44 text-center">
+                    <img src="/qrscan.gif" className="p-4 inline h-full w-auto" />
                 </div>
-                <div className=" w-full mt-2 text-center lg:px-20">
+                <div className="pb-8 w-full mt-2 text-center lg:px-20">
                     <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Batch Number</label>
                     <div className="flex justify-center">
                         <div className="w-full inline-flex h-12">
@@ -411,6 +413,7 @@ const App = () => {
                         Continue</button>
                     <br /><span className="text-xs text-black-900 cursor-pointer mt-2 font-header">Not this? </span>
                     <span onClick={() => router.push('/newbatch')} className="text-sm tracking-tighter text-blue-900 cursor-pointer mt-2 font-header hover:underline">Create new batch</span>
+                    <br />
                 </div>
             </div>
         </div>
