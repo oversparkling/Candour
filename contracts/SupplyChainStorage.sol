@@ -1,21 +1,17 @@
 pragma solidity ^0.8.11;
 
 contract SupplyChainStorage {
-    struct basicDetails {
-        string registrationNo;
-        string farmerName;
-        string farmAddress;
-        string exporterName;
-        string importerName;
+    struct cottonHarvester {
+        string fertiliser;
+        string water;
+        string deforestation;
+        string biowaste;
     }
 
     struct fabricManufacturer {
-        string factoryName;
-        string fabricType;
-        string dyeUsed;
-        string waterUsed;
-        string pocName;
-        string pocId;
+        string water;
+        string electricity;
+        string toxicWaste;
     }
 
     struct shirtManufacturer {
@@ -24,22 +20,21 @@ contract SupplyChainStorage {
     }
     address[] public batchNoArray;
     //SuppyChain contract should contain these
-    basicDetails basicDetailsData;
+    cottonHarvester cottonHarvesterData;
     fabricManufacturer fabricManufacturerData;
     shirtManufacturer shirtManufacturerData;
 
-    mapping(address => basicDetails) batchBasicDetails;
+    mapping(address => cottonHarvester) batchCottonHarvester;
     mapping(address => fabricManufacturer) batchFabricManufacturer;
     mapping(address => shirtManufacturer) batchShirtManufacturer;
 
     //batchNo is only generated during this function, will be same in the
     //rest of the structs
-    function setBasicDetails(
-        string memory _registrationNo,
-        string memory _farmerName,
-        string memory _farmAddress,
-        string memory _exporterName,
-        string memory _importerName
+    function setCottonHarvester(
+        string memory _fertiliser,
+        string memory _water,
+        string memory _deforestation,
+        string memory _biowaste
     ) public returns (address) {
         //Generates a batchNo based on the senders address and the
         //time of the transaction
@@ -51,53 +46,50 @@ contract SupplyChainStorage {
         );
 
         //Setting the basicDetails of the entity
-        basicDetailsData.registrationNo = _registrationNo;
-        basicDetailsData.farmerName = _farmerName;
-        basicDetailsData.farmAddress = _farmAddress;
-        basicDetailsData.exporterName = _exporterName;
-        basicDetailsData.importerName = _importerName;
-        batchBasicDetails[batchNo] = basicDetailsData;
+        cottonHarvesterData.fertiliser = _fertiliser;
+        cottonHarvesterData.water = _water;
+        cottonHarvesterData.deforestation = _deforestation;
+        cottonHarvesterData.biowaste = _biowaste;
+        batchCottonHarvester[batchNo] = cottonHarvesterData;
         batchNoArray.push(batchNo);
         return batchNo;
     }
 
     //Requires the batchNo which is the identifer for the individual structs
-    function getBasicDetails(address _batchNo)
+    function getCottonHarvester(address _batchNo)
         public
         view
         returns (
-            string memory registrationNo,
-            string memory farmerName,
-            string memory farmAddress,
-            string memory exporterName,
-            string memory importerName
+            string memory fertiliser,
+            string memory water,
+            string memory deforestation,
+            string memory biowaste
         )
     {
-        basicDetails memory tmpData = batchBasicDetails[_batchNo];
+        cottonHarvester memory tmpData = batchCottonHarvester[_batchNo];
 
         return (
-            tmpData.registrationNo,
-            tmpData.farmerName,
-            tmpData.farmAddress,
-            tmpData.exporterName,
-            tmpData.importerName
+            tmpData.fertiliser,
+            tmpData.water,
+            tmpData.deforestation,
+            tmpData.biowaste
         );
     }
 
-    function getAllBasicDetails()
+    function getAllCottonHarvester()
         public
         view
-        returns (basicDetails[] memory result)
+        returns (cottonHarvester[] memory result)
     {
         uint256 length = batchNoArray.length;
-        basicDetails[] memory basicDetailsArray = new basicDetails[](length);
+        cottonHarvester[] memory cottonHarvesterArray = new cottonHarvester[](length);
         for (uint256 i = 0; i < batchNoArray.length; i++) {
-            basicDetails memory basicDetail = batchBasicDetails[
+            cottonHarvester memory basicDetail = batchCottonHarvester[
                 batchNoArray[i]
             ];
-            basicDetailsArray[i] = basicDetail;
+            cottonHarvesterArray[i] = basicDetail;
         }
-        return basicDetailsArray;
+        return cottonHarvesterArray;
     }
 
     //Requires the batchNo which is the identifer for the individual structs
@@ -105,42 +97,30 @@ contract SupplyChainStorage {
         public
         view
         returns (
-            string memory _factoryName,
-            string memory _fabricType,
-            string memory _dyeUsed,
-            string memory _pocName,
-            string memory _pocId,
-            string memory _waterUsed
+            string memory water,
+            string memory electricity,
+            string memory toxicWaste
         )
     {
         fabricManufacturer memory tmpData = batchFabricManufacturer[_batchNo];
 
         return (
-            tmpData.factoryName,
-            tmpData.fabricType,
-            tmpData.dyeUsed,
-            tmpData.pocName,
-            tmpData.pocId,
-            tmpData.waterUsed
+            tmpData.water,
+            tmpData.electricity,
+            tmpData.toxicWaste
         );
     }
 
     //Requires the batchNo which is the identifer for the individual structs
     function setFabricDetails(
-        address _batchNo,
-        string memory _factoryName,
-        string memory _fabricType,
-        string memory _dyeUsed,
-        string memory _pocName,
-        string memory _pocId,
-        string memory _waterUsed
+        address batchNo,
+        string memory water,
+        string memory electricity,
+        string memory toxicWaste
     ) public returns (address) {
-        fabricManufacturerData.factoryName = _factoryName;
-        fabricManufacturerData.fabricType = _fabricType;
-        fabricManufacturerData.dyeUsed = _dyeUsed;
-        fabricManufacturerData.pocId = _pocId;
-        fabricManufacturerData.waterUsed = _waterUsed;
-        fabricManufacturerData.pocName = _pocName;
-        batchFabricManufacturer[_batchNo] = fabricManufacturerData;
+        fabricManufacturerData.water = water;
+        fabricManufacturerData.electricity = electricity;
+        fabricManufacturerData.toxicWaste = toxicWaste;
+        batchFabricManufacturer[batchNo] = fabricManufacturerData;
     }
 }

@@ -7,63 +7,40 @@ contract ClothingSupplyChain {
     event CottonHarvested(address indexed user, address indexed batchNo);
     event CottonBatchNo(
         address indexed user,
-        string registrationNo,
-        string farmerName,
-        string farmAddress,
-        string exporterName,
-        string importerName
+        string fertiliser,
+        string water,
+        string deforestation,
+        string biowaste
     );
     event FabricManufactured(address indexed user, address indexed batchNo);
     event FabricBatchNo(
         address indexed user,
-        string factoryName,
-        string fabricType,
-        string dyeUsed,
-        string pocName,
-        string pocId,
-        string waterUsed
+        string water,
+        string electricity,
+        string toxicWaste
     );
 
     event ShirtManufactured(address indexed user, address indexed batchNo);
     event RetrievedAll(
         address indexed user,
-        SupplyChainStorage.basicDetails[] result
+        SupplyChainStorage.cottonHarvester[] result
     );
-
-    struct basicDetails {
-        string registrationNo;
-        string farmerName;
-        string farmAddress;
-        string exporterName;
-        string importerName;
-    }
-
-    struct fabricDetails {
-        string factoryName;
-        string fabricType;
-        string dyeUsed;
-        string waterUsed;
-        string pocName;
-        string pocId;
-    }
 
     constructor(address _supplyChainAddress) public {
         supplyChainStorage = SupplyChainStorage(_supplyChainAddress);
     }
 
-    function setBasicDetails(
-        string memory _registrationNo,
-        string memory _farmerName,
-        string memory _farmAddress,
-        string memory _exporterName,
-        string memory _importerName
+    function setCottonHarvester(
+        string memory _fertiliser,
+        string memory _water,
+        string memory _deforestation,
+        string memory _biowaste
     ) public returns (address) {
-        address batchNo = supplyChainStorage.setBasicDetails(
-            _registrationNo,
-            _farmerName,
-            _farmAddress,
-            _exporterName,
-            _importerName
+        address batchNo = supplyChainStorage.setCottonHarvester(
+            _fertiliser,
+            _water,
+            _deforestation,
+            _biowaste
         );
 
         emit CottonHarvested(msg.sender, batchNo);
@@ -71,68 +48,58 @@ contract ClothingSupplyChain {
         return (batchNo);
     }
 
-    function getBasicDetails(address _batchNo)
+    function getAllCottonHarvester(address _batchNo)
         public
         returns (
-            string memory registrationNo,
-            string memory farmerName,
-            string memory farmAddress,
-            string memory exporterName,
-            string memory importerName
+            string memory _fertiliser,
+            string memory _water,
+            string memory _deforestation,
+            string memory _biowaste
         )
     {
         /* Call Storage Contract */
         (
-            registrationNo,
-            farmerName,
-            farmAddress,
-            exporterName,
-            importerName
-        ) = supplyChainStorage.getBasicDetails(_batchNo);
+            _fertiliser,
+            _water,
+            _deforestation,
+            _biowaste
+        ) = supplyChainStorage.getCottonHarvester(_batchNo);
         emit CottonBatchNo(
             msg.sender,
-            registrationNo,
-            farmerName,
-            farmAddress,
-            exporterName,
-            importerName
+            _fertiliser,
+            _water,
+            _deforestation,
+            _biowaste
         );
         return (
-            registrationNo,
-            farmerName,
-            farmAddress,
-            exporterName,
-            importerName
+            _fertiliser,
+            _water,
+            _deforestation,
+            _biowaste
         );
     }
 
-    function getAllBasicDetails()
+    function getAllCottonHarvester()
         public
-        returns (SupplyChainStorage.basicDetails[] memory result)
+        returns (SupplyChainStorage.cottonHarvester[] memory result)
     {
-        SupplyChainStorage.basicDetails[] memory tempResult = supplyChainStorage
-            .getAllBasicDetails();
+        SupplyChainStorage.cottonHarvester[] memory tempResult = supplyChainStorage
+            .getAllCottonHarvester();
         emit RetrievedAll(msg.sender, tempResult);
         return (tempResult);
     }
 
     function setFabricDetails(
         address batchNo,
-        string memory factoryName,
-        string memory fabricType,
-        string memory dyeUsed,
-        string memory pocName,
-        string memory pocId,
-        string memory waterUsed
+        string memory water,
+        string memory electricity,
+        string memory toxicWaste
     ) public returns (address) {
         supplyChainStorage.setFabricDetails(
             batchNo,
-            factoryName,
-            fabricType,
-            dyeUsed,
-            pocName,
-            pocId,
-            waterUsed
+            water,
+            electricity,
+            toxicWaste
         );
 
         emit FabricManufactured(msg.sender, batchNo);
@@ -145,32 +112,25 @@ contract ClothingSupplyChain {
     function getFabricDetails(address _batchNo)
         public
         returns (
-            string memory factoryName,
-            string memory fabricType,
-            string memory dyeUsed,
-            string memory _pocName,
-            string memory _pocId,
-            string memory _waterUsed
+            string memory water,
+            string memory electricity,
+            string memory toxicWaste
         )
     {
         /* Call Storage Contract */
         (
-            factoryName,
-            fabricType,
-            dyeUsed,
-            _pocName,
-            _pocId,
-            _waterUsed
+            water,
+            electricity,
+            toxicWaste
         ) = supplyChainStorage.getFabricDetails(_batchNo);
         emit FabricBatchNo(
             msg.sender,
-            factoryName,
-            fabricType,
-            dyeUsed,
-            _pocName,
-            _pocId,
-            _waterUsed
+            water,
+            electricity,
+            toxicWaste
         );
-        return (factoryName, fabricType, dyeUsed, _pocName, _pocId, _waterUsed);
+        return (water,
+            electricity,
+            toxicWaste);
     }
 }
