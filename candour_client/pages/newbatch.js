@@ -21,12 +21,13 @@ function newbatch(props) {
         accounts: null,
         contract: null,
     });
+    const router = useRouter();
     const [open, setOpen] = useState(false);
-    const [registrationNo, setRegistrationNo] = useState("");
-    const [farmerName, setFarmerName] = useState("");
-    const [farmAddress, setFarmAddress] = useState("");
-    const [exporterName, setExporterName] = useState("");
-    const [importerName, setImporterName] = useState("");
+    const [cottonLocation, setCottonLocation] = useState("");
+    const [fertiliser, setFertiliser] = useState("");
+    const [waterUsed, setWaterUsed] = useState("");
+    const [deforestation, setDeforestation] = useState("");
+    const [biowaste, setBiowaste] = useState("");
     const [batchNo, setBatchNo] = useState("");
     const cancelButtonRef = useRef(null);
     const setBasicDetails = async () => {
@@ -40,12 +41,11 @@ function newbatch(props) {
             deployedNetwork && deployedNetwork.address
         );
         const batchNo1 = await instance.methods
-            .setBasicDetails(
-                registrationNo,
-                farmerName,
-                farmAddress,
-                exporterName,
-                importerName
+            .setCottonHarvester(
+                fertiliser,
+                waterUsed,
+                deforestation,
+                biowaste
             )
             .send({ from: accounts[0], gasPrice: "200" });
         setBatchNo(batchNo1.events.CottonHarvested.returnValues.batchNo);
@@ -73,7 +73,7 @@ function newbatch(props) {
             }
         };
         init();
-    }, []);
+    }, [router]);
     if (!state.web3) {
         return (<Loading />)
     }
@@ -96,48 +96,48 @@ function newbatch(props) {
                 </svg></h3>
                 <p className="text-black-800 text-xs tracking-tighter leading-none font-prints lg:text-sm">Voluntary disclosure of manufacturing processes.</p>
                 <div className=" w-full mt-2 text-center lg:px-20">
-                    <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Registration Number</label>
+                    <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Cotton Location</label>
                     <div className="flex justify-center">
                         <div className="w-full inline-flex h-12">
-                            <input onChange={(e) => setRegistrationNo(e.target.value)} type="text" placeholder="Unique identifier for this good" className="focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
+                            <input onChange={(e) => setCottonLocation(e.target.value)} type="text" placeholder="Location where cotton was harvested" className="focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
                         </div>
                     </div>
                 </div>
                 <div className=" w-full mt-2 text-center lg:px-20">
-                    <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Farmer's Name</label>
+                    <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Fertiliser</label>
                     <div className="flex justify-center">
                         <div className="w-full inline-flex h-12">
-                            <input onChange={(e) => setFarmerName(e.target.value)} type="text" placeholder="Name of farmer that harvested" className="focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
+                            <input onChange={(e) => setFertiliser(e.target.value)} type="text" placeholder="Quantity of fertiliser used" className="focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
                         </div>
                     </div>
                 </div>
                 <div className=" w-full mt-2 text-center lg:px-20">
-                    <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Farm's Address</label>
+                    <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Water Usage</label>
                     <div className="flex justify-center">
                         <div className="w-full inline-flex h-12">
-                            <input onChange={(e) => setFarmAddress(e.target.value)} type="text" placeholder="Where the farm is located" className="focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
+                            <input onChange={(e) => setWaterUsed(e.target.value)} type="text" placeholder="Quantity of water used" className="focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
                         </div>
                     </div>
                 </div>
                 <div className=" w-full mt-2 text-center lg:px-20">
-                    <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Exporter's Name</label>
+                    <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Deforestation details</label>
                     <div className="flex justify-center">
                         <div className="w-full inline-flex h-12">
-                            <input onChange={(e) => setExporterName(e.target.value)} type="text" placeholder="Name of exporter company" className="focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
+                            <input onChange={(e) => setDeforestation(e.target.value)} type="text" placeholder="Amount of deforestation caused" className="focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
                         </div>
                     </div>
                 </div>
                 <div className=" w-full mt-2 text-center lg:px-20">
-                    <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Importer's Name</label>
+                    <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Biowaste Pollution</label>
                     <div className="flex justify-center">
                         <div className="w-full inline-flex h-12">
-                            <input onChange={(e) => setImporterName(e.target.value)} type="text" placeholder="Name of importer company" className="focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
+                            <input onChange={(e) => setBiowaste(e.target.value)} type="text" placeholder="Amount of biowaste produced" className="focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
                         </div>
                     </div>
                 </div>
 
 
-                <div className=" w-full mt-2 text-center lg:px-20">
+                {/* <div className=" w-full mt-2 text-center lg:px-20">
                     <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Water Usage</label>
                     <div className="flex justify-center">
                         <div className="w-full inline-flex h-12">
@@ -160,8 +160,8 @@ function newbatch(props) {
                             <input type="text" placeholder="Name of importer company" className="focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 " />
                         </div>
                     </div>
-                </div>
-                <div className=" w-full mt-2 text-center lg:px-20">
+                </div> */}
+                <div className=" w-full mt-2 text-center lg:px-20 mt-5">
                     <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Check all relevant fields</label>
                     <div className="flex text-left">
                         <div className="w-full">
@@ -214,30 +214,7 @@ function newbatch(props) {
                         </div>
                     </div>
                 </div>
-                <div className="h-48 w-full mt-2 text-center lg:px-20">
-                    <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Remarks</label>
-                    <div className="flex justify-center">
-                        <div className="w-full inline-flex h-12">
-                            <textarea placeholder="Additional information for disclosure" className="h-40 resize-none focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 "></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div className="h-48 w-full mt-2 text-center lg:px-20">
-                    <label htmlFor="website-admin" className="block mb-1 font-semibold text-black-900 tracking-tighter text-left">Remarks</label>
-                    <div className="flex justify-center" style={{ border: "dashed 1px lightgray" }}>
-                        <div className="w-full h-32 inline-flex h-12">
-                            <div className="box-border w-full p-4 items-center self-center">
-                                <div className="items-center flex-col flex w-full tracking-tighter text-gray-400"> <svg className="w-8 h-8" fill="lightgray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
-                                </svg><div>
-                                        Drag and drop your images here.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className=" w-full mt-2 text-center lg:px-20">
+                <div className=" w-full mt-7 text-center lg:px-20">
                     <div className="flex justify-center">
                         <div className="w-full inline-flex h-12">
                             <button onClick={() => { setBasicDetails(); setOpen(true); }}
@@ -336,6 +313,16 @@ function newbatch(props) {
                                         </div>
                                     </div>
                                     <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                                        {batchNo!="" && 
+                                            <button
+                                                type="button"
+                                                className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
+                                                onClick={()=>{router.push("/secondStage?batchNo="+batchNo)}}
+                                            >
+                                                Continue to next stage
+                                            </button>
+
+                                        }
                                         <button
                                             type="button"
                                             className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
@@ -343,6 +330,7 @@ function newbatch(props) {
                                         >
                                             Ok
                                         </button>
+                                        
                                     </div>
                                 </div>
                             </Transition.Child>
