@@ -21,13 +21,17 @@ function newbatch(props) {
         accounts: null,
         contract: null,
     });
+    const axios = require("axios");
+
     const [open, setOpen] = useState(false);
     const [fabricLocation, setFabricLocation] = useState("");
     const [waterUsed, setWaterUsed] = useState("");
     const [electricity, setElectricity] = useState("");
     const [toxicWaste, setToxicWaste] = useState("");
     const [batchNo, setBatchNo] = useState("");
-    const [transactionPassed,setTransactionPassed] = useState(false)
+    const [productName,setProductName] = useState("")
+    const [description,setDescription] = useState("")
+    const [transactionPassed, setTransactionPassed] = useState(false);
     const router = useRouter();
     const {
         query: { batchno },
@@ -44,9 +48,23 @@ function newbatch(props) {
             deployedNetwork && deployedNetwork.address
         );
         const batchNo1 = await instance.methods
-            .setFabricDetails(batchNo,waterUsed, electricity, toxicWaste)
+            .setFabricDetails(batchNo, waterUsed, electricity, toxicWaste)
             .send({ from: accounts[0], gasPrice: "200" });
-            setTransactionPassed(true)
+        setTransactionPassed(true);
+        const indexerData = {
+            batchNo: batchNo,
+            water_consumption: waterUsed,
+            electricity_used: electricity,
+            effluent_released: toxicWaste,
+            productName:productName,
+            description:description,
+            imageUrl:"https://www.bfgcdn.com/1500_1500_90/016-7143-1411/patagonia-p-6-logo-responsibili-tee-t-shirt.jpg"
+        };
+        axios
+            .post("https://candour-indexer.herokuapp.com/product", indexerData)
+            .catch(function (error) {
+                console.log(error);
+            });
         // console.log(test.call().send({ from: state.accounts[0] }))
     };
 
@@ -114,7 +132,8 @@ function newbatch(props) {
                     </svg>
                 </h3>
                 <p className="text-black-800 text-xs tracking-tighter leading-none font-prints lg:text-sm">
-                    Voluntary disclosure of manufacturing processes for batch {batchNo}
+                    Voluntary disclosure of manufacturing processes for batch{" "}
+                    {batchNo}
                 </p>
                 <div className=" w-full mt-2 text-center lg:px-20">
                     <label
@@ -182,9 +201,7 @@ function newbatch(props) {
                     <div className="flex justify-center">
                         <div className="w-full inline-flex h-12">
                             <input
-                                onChange={(e) =>
-                                    setToxicWaste(e.target.value)
-                                }
+                                onChange={(e) => setToxicWaste(e.target.value)}
                                 type="text"
                                 placeholder="Amount of toxic waste produced"
                                 className="focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 "
@@ -192,7 +209,6 @@ function newbatch(props) {
                         </div>
                     </div>
                 </div>
-                
 
                 <div className=" w-full mt-2 text-center lg:px-20 mt-5">
                     <label
@@ -315,7 +331,7 @@ function newbatch(props) {
                         </div>
                     </div>
                 </div>
-                
+
                 <div className="w-full mt-10 text-center lg:px-20">
                     <label
                         htmlFor="website-admin"
@@ -328,6 +344,7 @@ function newbatch(props) {
                             <textarea
                                 placeholder="Name of your product"
                                 className="h-10 resize-none focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 "
+                                onChange={(e) => setProductName(e.target.value)}
                             ></textarea>
                         </div>
                     </div>
@@ -344,6 +361,7 @@ function newbatch(props) {
                             <textarea
                                 placeholder="Additional information for disclosure"
                                 className="h-40 resize-none focus:border-blue-900 rounded-lg border outline-0 border-gray-300 text-gray-900 text-xs font-prints block flex-1 min-w-0 w-full text-xs border-gray-300 p-2.5 "
+                                onChange={(e) => setDescription(e.target.value)}
                             ></textarea>
                         </div>
                     </div>
@@ -468,7 +486,11 @@ function newbatch(props) {
                                                     ) : (
                                                         <div className=" flex-col flex text-center items-center">
                                                             <p className="text-sm text-gray-500">
-                                                                Transaction Processed! Below is your QR code to be placed on products
+                                                                Transaction
+                                                                Processed! Below
+                                                                is your QR code
+                                                                to be placed on
+                                                                products
                                                             </p>
                                                             <QRCode
                                                                 value={

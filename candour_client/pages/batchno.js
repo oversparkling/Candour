@@ -37,10 +37,9 @@ function pid() {
                 if (batchno != undefined) {
                     console.log(instance)
                     const returnValue = await instance.methods
-                        // .getFabricDetails(batchno)
-                        // .setFabricDetails(batchno,"test","test","test","test","test","test")
-                        .getBasicDetails(batchno)
+                        .getCottonHarvester(batchno)
                         .send({ from: accounts[0] });
+                    
                     setResult(returnValue);
                     console.log(returnValue);
                     console.log(returnValue.events);
@@ -103,15 +102,13 @@ function pid() {
                         <Timeline pending="Next stage name.." >
                             <Timeline.Item color="green">
                                 {result ? <div><span className="pr-0.5 tracking-tighter font-header text-green-600">Cotton Harvested: Supima®</span><br /></div> : <div><Skeleton active /></div>}
-                                {result ? <div><span className="pr-0.5 tracking-tighter text-black-900 font-prints text-sm">Legal Entity Identifier (LEI):</span><span className="tracking-tighter text-black-800 font-prints text-sm">{result ? result.events.CottonBatchNo.returnValues.registrationNo : ""}</span><br /></div> : "" }
-                                {result ? <div><span className="pr-0.5 tracking-tighter text-black-900 font-prints text-sm">Batch Producer:</span><span className="tracking-tighter text-black-800 font-prints text-sm">{result ? result.events.CottonBatchNo.returnValues.farmerName : ""} </span><br /></div> : "" }
-                                {result ? <div><span className="pr-0.5 tracking-tighter text-black-900 font-prints text-sm">Production Location:</span><span className="tracking-tighter text-black-800 font-prints text-sm">{result ? result.events.CottonBatchNo.returnValues.registrationNo : ""}</span><br /></div> : "" }
-                                {result ? <div><span className="pr-0.5 tracking-tighter text-black-900 font-prints text-sm">Importer's Name:</span><span className="tracking-tighter text-black-800 font-prints text-sm">{result ? result.events.CottonBatchNo.returnValues.importerName : ""} </span><br /></div> : "" }
-                                {result ? <div><span className="pr-0.5 tracking-tighter text-black-900 font-prints text-sm">Importer's Number:</span><span className="tracking-tighter text-black-800 font-prints text-sm">{result ? result.events.CottonBatchNo.returnValues.importerName : ""} </span><br /></div> : "" }
-                                {result ? <div><span className="pr-0.5 tracking-tighter text-black-900 font-prints text-sm">Exporter's Name:</span><span className="tracking-tighter text-black-800 font-prints text-sm">{result ? result.events.CottonBatchNo.returnValues.exporterName : ""} </span><br /></div> : "" }
-                                {result ? <div><span className="pr-0.5 tracking-tighter text-black-900 font-prints text-sm">Exporter's Number:</span><span className="tracking-tighter text-black-800 font-prints text-sm">{result ? result.events.CottonBatchNo.returnValues.exporterName : ""} </span><br /></div> : "" }
+                                {result ? <div><span className="pr-0.5 tracking-tighter text-black-900 font-prints text-sm">Harvest Location:</span><span className="tracking-tighter text-black-800 font-prints text-sm">{result ? result.events.CottonBatchNo.returnValues.fertiliser : ""}</span><br /></div> : "" }
+                                {result ? <div><span className="pr-0.5 tracking-tighter text-black-900 font-prints text-sm">Fertiliser Type:</span><span className="tracking-tighter text-black-800 font-prints text-sm">{result ? result.events.CottonBatchNo.returnValues.fertiliser : ""} </span><br /></div> : "" }
+                                {result ? <div><span className="pr-0.5 tracking-tighter text-black-900 font-prints text-sm">Fertiliser Used:</span><span className="tracking-tighter text-black-800 font-prints text-sm">{result ? result.events.CottonBatchNo.returnValues.fertiliser : ""}</span><br /></div> : "" }
+                                {result ? <div><span className="pr-0.5 tracking-tighter text-black-900 font-prints text-sm">Water Consumed:</span><span className="tracking-tighter text-black-800 font-prints text-sm">{result ? result.events.CottonBatchNo.returnValues.water : ""} </span><br /></div> : "" }
+                                {result ? <div><span className="pr-0.5 tracking-tighter text-black-900 font-prints text-sm">Biowaste Produced:</span><span className="tracking-tighter text-black-800 font-prints text-sm">{result ? result.events.CottonBatchNo.returnValues.biowaste : ""} </span><br /></div> : "" }
                             </Timeline.Item>
-                            <Timeline.Item color="green">
+                            {/* <Timeline.Item color="green">
                                 {result ? <div><span className="pr-0.5 tracking-tighter font-header text-green-600">Cotton Harvested: Supima®</span><br /></div> : <div><Skeleton active /></div>}
                                 {result ? <div><span className="pr-0.5 tracking-tighter text-black-900 font-prints text-sm">Legal Entity Identifier (LEI):</span><span className="tracking-tighter text-black-800 font-prints text-sm">{result ? result.events.CottonBatchNo.returnValues.registrationNo : ""}</span><br /></div> : "" }
                                 {result ? <div><span className="pr-0.5 tracking-tighter text-black-900 font-prints text-sm">Batch Producer:</span><span className="tracking-tighter text-black-800 font-prints text-sm">{result ? result.events.CottonBatchNo.returnValues.farmerName : ""} </span><br /></div> : "" }
@@ -150,7 +147,7 @@ function pid() {
                                 {result ? <div><span className="pr-0.5 tracking-tighter text-black-900 font-prints text-sm">Importer's Number:</span><span className="tracking-tighter text-black-800 font-prints text-sm">{result ? result.events.CottonBatchNo.returnValues.importerName : ""} </span><br /></div> : "" }
                                 {result ? <div><span className="pr-0.5 tracking-tighter text-black-900 font-prints text-sm">Exporter's Name:</span><span className="tracking-tighter text-black-800 font-prints text-sm">{result ? result.events.CottonBatchNo.returnValues.exporterName : ""} </span><br /></div> : "" }
                                 {result ? <div><span className="pr-0.5 tracking-tighter text-black-900 font-prints text-sm">Exporter's Number:</span><span className="tracking-tighter text-black-800 font-prints text-sm">{result ? result.events.CottonBatchNo.returnValues.exporterName : ""} </span><br /></div> : "" }
-                            </Timeline.Item>
+                            </Timeline.Item> */}
                         </Timeline>
                     </div>
                 </div>

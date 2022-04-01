@@ -48,7 +48,7 @@ contract ClothingSupplyChain {
         return (batchNo);
     }
 
-    function getAllCottonHarvester(address _batchNo)
+    function getCottonHarvester(address _batchNo)
         public
         returns (
             string memory _fertiliser,
@@ -58,12 +58,8 @@ contract ClothingSupplyChain {
         )
     {
         /* Call Storage Contract */
-        (
-            _fertiliser,
-            _water,
-            _deforestation,
-            _biowaste
-        ) = supplyChainStorage.getCottonHarvester(_batchNo);
+        (_fertiliser, _water, _deforestation, _biowaste) = supplyChainStorage
+            .getCottonHarvester(_batchNo);
         emit CottonBatchNo(
             msg.sender,
             _fertiliser,
@@ -71,22 +67,35 @@ contract ClothingSupplyChain {
             _deforestation,
             _biowaste
         );
-        return (
-            _fertiliser,
-            _water,
-            _deforestation,
-            _biowaste
-        );
+        return (_fertiliser, _water, _deforestation, _biowaste);
     }
 
     function getAllCottonHarvester()
         public
         returns (SupplyChainStorage.cottonHarvester[] memory result)
     {
-        SupplyChainStorage.cottonHarvester[] memory tempResult = supplyChainStorage
-            .getAllCottonHarvester();
+        SupplyChainStorage.cottonHarvester[]
+            memory tempResult = supplyChainStorage.getAllCottonHarvester();
         emit RetrievedAll(msg.sender, tempResult);
         return (tempResult);
+    }
+
+    function getAllDetails(address batchNo)
+        public
+        returns (
+            
+            string memory _fertiliser,
+            string memory _water,
+            string memory _deforestation,
+            string memory _biowaste,
+            string memory water1,
+            string memory electricity1,
+            string memory toxicWaste1
+        )
+    {
+        supplyChainStorage.getAllDetails(
+            batchNo
+        );
     }
 
     function setFabricDetails(
@@ -107,8 +116,6 @@ contract ClothingSupplyChain {
         return (batchNo);
     }
 
-
-
     function getFabricDetails(address _batchNo)
         public
         returns (
@@ -118,19 +125,10 @@ contract ClothingSupplyChain {
         )
     {
         /* Call Storage Contract */
-        (
-            water,
-            electricity,
-            toxicWaste
-        ) = supplyChainStorage.getFabricDetails(_batchNo);
-        emit FabricBatchNo(
-            msg.sender,
-            water,
-            electricity,
-            toxicWaste
+        (water, electricity, toxicWaste) = supplyChainStorage.getFabricDetails(
+            _batchNo
         );
-        return (water,
-            electricity,
-            toxicWaste);
+        emit FabricBatchNo(msg.sender, water, electricity, toxicWaste);
+        return (water, electricity, toxicWaste);
     }
 }

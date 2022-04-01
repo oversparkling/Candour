@@ -55,6 +55,20 @@ contract SupplyChainStorage {
         return batchNo;
     }
 
+    function getAllDetails(address batchNo) public returns (
+        string memory _fertiliser,
+        string memory _water,
+        string memory _deforestation,
+        string memory _biowaste,
+        string memory water1,
+        string memory electricity1,
+        string memory toxicWaste1
+    ){
+        cottonHarvester memory tmpData = batchCottonHarvester[batchNo];
+        fabricManufacturer memory tmpData1 = batchFabricManufacturer[batchNo];
+        
+    }
+
     //Requires the batchNo which is the identifer for the individual structs
     function getCottonHarvester(address _batchNo)
         public
