@@ -22,6 +22,7 @@ function pid() {
     } = router;
 
     useEffect(() => {
+        document.title = 'Candour | Transparency in Supplychain'
         const init = async () => {
             try {
                 setBatchNo(batchno);
@@ -62,7 +63,7 @@ function pid() {
     return (
         <div className="flex-col flex pt-7 px-4 lg:pb-10 pb-28 bg-teal bg-cover lg:px-10" style={{ backgroundPosition: "left top" }}>
             <div className="grid grid-cols-6 gap-4 pb-6">
-                <div className="col-start-1 col-span-2 pl-5"><img onClick={() => router.push("/")}
+                <div onClick={() => router.push("/")} className="cursor-pointer col-start-1 col-span-2 pl-5"><img
                     src="/navbarlogo.png"
                     width={80}
                     height="auto"

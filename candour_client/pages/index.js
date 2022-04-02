@@ -55,6 +55,7 @@ const App = () => {
     const [allDetails, setAllDetails] = useState();
     
     useEffect(() => {
+        document.title = 'Candour'
         const init = async () => {
             try {
                 const web3 = await getWeb3();
@@ -366,7 +367,7 @@ const App = () => {
         // </div>
         <div className="pt-7 px-4 lg:pb-10 pb-28 bg-standard bg-cover lg:px-10" style={{ backgroundPosition: "left top" }}>
             <div className="grid grid-cols-6 gap-4 pb-6">
-                <div className="col-start-1 col-span-2 pl-5"><img
+                <div onClick={() => router.push("/")} className="cursor-pointer col-start-1 col-span-2 pl-5"><img
                     src="/navbarlogo.png"
                     width={80}
                     height="auto"

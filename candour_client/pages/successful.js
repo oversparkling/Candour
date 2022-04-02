@@ -10,6 +10,7 @@ import { notification, LoadingOutlined } from 'antd';
 
 const App = () => {
     const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+    const router = useRouter()
     const [state, setState] = useState({
         web3: null,
         accounts: null,
@@ -47,6 +48,7 @@ const App = () => {
     };
 
     useEffect(() => {
+        document.title = 'Candour | Transparency in Supplychain'
         const init = async () => {
             try {
                 const web3 = await getWeb3();
@@ -74,7 +76,7 @@ const App = () => {
     return (
         <div className="pt-7 px-4 lg:pb-10 pb-28 bg-green bg-cover lg:px-10" style={{ backgroundPosition: "left top" }}>
             <div className="grid grid-cols-6 gap-4 pb-6">
-                <div className="col-start-1 col-span-2 pl-5"><img
+                <div onClick={() => router.push("/")} className="cursor-pointer col-start-1 col-span-2 pl-5"><img
                     src="/navbarlogo.png"
                     width={80}
                     height="auto"

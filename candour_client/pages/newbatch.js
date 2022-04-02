@@ -18,12 +18,12 @@ import SkeletonInput from "antd/lib/skeleton/Input";
 function newbatch(props) {
     const axios = require("axios");
     const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+    const router = useRouter()
     const [state, setState] = useState({
         web3: null,
         accounts: null,
         contract: null,
     });
-    const router = useRouter();
     const [open, setOpen] = useState(false);
     const [cottonLocation, setCottonLocation] = useState("");
     const [fertiliser, setFertiliser] = useState("");
@@ -63,6 +63,7 @@ function newbatch(props) {
     };
 
     useEffect(() => {
+        document.title = 'Candour | Transparency in Supplychain'
         const init = async () => {
             try {
                 const web3 = await getWeb3();
@@ -93,23 +94,14 @@ function newbatch(props) {
             className="flex-col flex pt-7 px-4 lg:pb-10 pb-28 bg-red bg-cover lg:px-10"
             style={{ backgroundPosition: "left top" }}
         >
-            <div className="grid grid-cols-6 gap-4 pb-6">
-                <div className="col-start-1 col-span-2 pl-5">
-                    <img src="/navbarlogo.png" width={80} height="auto" />
+            <div onClick={() => router.push("/")} className="cursor-pointer col-start-1 col-span-2 pl-5"><img
+                    src="/navbarlogo.png"
+                    width={80}
+                    height="auto"
+                /></div>
+                <div data-tooltip-placement="bottom" data-tooltip-target="tooltip-bottom" className="col-start-5 col-span-2 pr-5 font-semibold" style={{ textAlignLast: "end" }}>
+                    {state.accounts[0].substring(0, 5) + "..." + state.accounts[0].substring(state.accounts[0].length - 4)}
                 </div>
-                <div
-                    data-tooltip-placement="bottom"
-                    data-tooltip-target="tooltip-bottom"
-                    className="col-start-5 col-span-2 pr-5 font-semibold"
-                    style={{ textAlignLast: "end" }}
-                >
-                    {state.accounts[0].substring(0, 5) +
-                        "..." +
-                        state.accounts[0].substring(
-                            state.accounts[0].length - 4
-                        )}
-                </div>
-            </div>
             <div className="w-full h-full bg-white shadow-lg rounded-lg px-5 pt-5 pb-8 lg:h-full lg:px-7 lg:text-center md:text-center">
                 <h3 className="font-header text-xl tracking-tighter mb-1 text-black-900 lg:text-2xl lg:pt-2">
                     Sustainability Declaration{" "}
