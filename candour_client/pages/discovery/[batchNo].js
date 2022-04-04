@@ -115,12 +115,16 @@ const App = () => {
         const { batchNo } = router.query
         axios.get('https://candour-indexer.herokuapp.com/product?id=' + batchNo).then(function (response) {
             setBatch(response['data'])
-            axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/' + response['data']['location'] + '.json?access_token=pk.eyJ1IjoiYWx2aW5vd3lvbmciLCJhIjoiY2wxaHhnYXh0MGNhZDNpczZxZTZsb204cCJ9.8rGpBI5OY17vDLkhsAe5Xw')
+            if (response['data']['location'] === "") {
+                setGeocode([+5, -1])
+            } else {
+                axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/' + response['data']['location'] + '.json?access_token=pk.eyJ1IjoiYWx2aW5vd3lvbmciLCJhIjoiY2wxaHhnYXh0MGNhZDNpczZxZTZsb204cCJ9.8rGpBI5OY17vDLkhsAe5Xw')
                 .then(function (response) {
                     setGeocode([response['data']['features'][0]['center'][0], response['data']['features'][0]['center'][1]])
                 }).catch(function (error) {
                     console.log(error);
                 })
+            }
         }).catch(function (error) {
             console.log(error);
         })
@@ -158,11 +162,6 @@ const App = () => {
         });
     }, [geocode]);
 
-    // TODO: Set loading if data not populated yet
-
-    // if (!batch | geocode.length <= 0) {
-    //     return (<Loading />)
-    // }
     return (
         <div className="pt-7 px-4 lg:pb-10 pb-28 bg-green bg-cover lg:px-10" style={{ backgroundPosition: "left top" }}>
             <div className="grid grid-cols-6 gap-4 pb-6">
