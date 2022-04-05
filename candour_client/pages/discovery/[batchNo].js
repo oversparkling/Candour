@@ -16,7 +16,7 @@ const App = () => {
     const mapContainer = useRef(null);
     const map = useRef(null);
     const [batch, setBatch] = useState(null);
-    const [geocode, setGeocode] = useState([0,0]);
+    const [geocode, setGeocode] = useState([]);
     const [lng, setLng] = useState(-8.1);
     const [lat, setLat] = useState(26.1);
     const [zoom, setZoom] = useState(10);
@@ -94,12 +94,12 @@ const App = () => {
     };
 
     useEffect(() => {
-        if (map.current) return; // initialize map only once
         if (geocode.length <= 0) return;
+        if (map.current) return; // initialize map only once
         map.current = new mapboxgl.Map({
             container: mapContainer.current,
             style: "mapbox://styles/mapbox/light-v10",
-            center: [geocode[0], geocode[0]],
+            center: [geocode[0][0], geocode[0][1]],
             zoom: zoom,
             interactive: false,
         });
@@ -121,8 +121,8 @@ const App = () => {
             .then(function (response) {
                 setBatch(response["data"]);
                 if (response["data"]["location"] === "") {
-                    // geoArray.push([+5, -1]);
-                    setGeocode([+5, -1]);
+                    geoArray.push([+5, -1]);
+                    // setGeocode([+5, -1]);
                 } else {
                     axios
                         .get(
@@ -131,14 +131,14 @@ const App = () => {
                                 ".json?access_token=pk.eyJ1IjoiYWx2aW5vd3lvbmciLCJhIjoiY2wxaHhnYXh0MGNhZDNpczZxZTZsb204cCJ9.8rGpBI5OY17vDLkhsAe5Xw"
                         )
                         .then(function (response1) {
-                            // geoArray.push([
-                            //     response1["data"]["features"][0]["center"][0],
-                            //     response1["data"]["features"][0]["center"][1],
-                            // ]);
-                            setGeocode([
+                            geoArray.push([
                                 response1["data"]["features"][0]["center"][0],
                                 response1["data"]["features"][0]["center"][1],
                             ]);
+                            // setGeocode([
+                            //     response1["data"]["features"][0]["center"][0],
+                            //     response1["data"]["features"][0]["center"][1],
+                            // ]);
                         })
                         .catch(function (error) {
                             console.log(error);
@@ -147,7 +147,7 @@ const App = () => {
                 if (response["data"]["location_two"] === "") {
                     geoArray.push([+5, -1]);
                     console.log(geoArray);
-                    setGeocode((geocode1) => [...geocode1, [+5, -1]]);
+                    // setGeocode((geocode1) => [...geocode1, [+5, -1]]);
                 } else {
                     axios
                         .get(
@@ -156,21 +156,21 @@ const App = () => {
                                 ".json?access_token=pk.eyJ1IjoiYWx2aW5vd3lvbmciLCJhIjoiY2wxaHhnYXh0MGNhZDNpczZxZTZsb204cCJ9.8rGpBI5OY17vDLkhsAe5Xw"
                         )
                         .then(function (response2) {
-                            // geoArray.push([
-                            //     response2["data"]["features"][0]["center"][0],
-                            //     response2["data"]["features"][0]["center"][1],
-                            // ]);
-                            setGeocode((geocode1) => [
-                                ...geocode1,
-                                [
-                                    response2["data"]["features"][0][
-                                        "center"
-                                    ][0],
-                                    response2["data"]["features"][0][
-                                        "center"
-                                    ][1],
-                                ],
+                            geoArray.push([
+                                response2["data"]["features"][0]["center"][0],
+                                response2["data"]["features"][0]["center"][1],
                             ]);
+                            // setGeocode((geocode1) => [
+                            //     ...geocode1,
+                            //     [
+                            //         response2["data"]["features"][0][
+                            //             "center"
+                            //         ][0],
+                            //         response2["data"]["features"][0][
+                            //             "center"
+                            //         ][1],
+                            //     ],
+                            // ]);
                             if (
                                 Math.abs(geoArray[0][0] - geoArray[1][0]) +
                                     Math.abs(geoArray[0][1] - geoArray[1][1]) >
@@ -193,10 +193,6 @@ const App = () => {
     useEffect(() => {
         if (!map.current) return; // wait for map to initialize
         if (geocode.length <= 1) return;
-        console.log(geocode[0][0]);
-        console.log(geocode[0][1]);
-        console.log(geocode[1][0]);
-        console.log(geocode[1][1]);
 
         map.current.on("load", () => {
             map.current.addImage("pulsing-dot", pulsingDot, {
