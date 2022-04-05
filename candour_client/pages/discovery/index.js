@@ -37,11 +37,11 @@ function Pid() {
                 <h3 className="font-header text-xl tracking-tighter mb-1 text-black-900 lg:text-2xl lg:pt-2">Popular Products</h3>
                 <p className="text-black-800 text-xs tracking-tighter leading-none font-prints lg:text-sm"></p>
                 <Carousel autoplay className="w-full mb-3 mt-4" dotPosition={"top"}>
-                    {allProduct && allProduct.length > 0 && allProduct.map((element,index) => {
+                    {allProduct && allProduct.length > 0 && allProduct.slice(0, 3).map((element,index) => {
                         return (
                             <div key = {index}>
                                 <div onClick={() => router.push("/discovery/" + element.batchNo)} style={{
-                                    backgroundImage: 'linear-gradient(to bottom, transparent 0%, black 100%), url(' + 'https://picsum.photos/seed/' + element.batchNo + '1/2000/1000' + ')',
+                                    backgroundImage: 'linear-gradient(to bottom, transparent 0%, black 100%), url(' + [element.imageUrl !== "" ? element.imageUrl : ('https://picsum.photos/seed/' + element.batchNo + '1/2000/1000')] + ')',
                                     backgroundSize: 'cover',
                                     backgroundPosition: 'center',
                                     color: "white"
@@ -58,7 +58,7 @@ function Pid() {
                 </svg></h3>
                 <p className="text-black-800 text-xs tracking-tighter leading-none font-prints lg:text-sm">Discover and find out more about these sustainable fashion products.</p>
                 <div className="text-left mt-0 sm:flex sm:grid sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
-                    {allProduct && allProduct.length > 0 && allProduct.slice(0, 15).map((element,index) => {
+                    {allProduct && allProduct.length > 0 && allProduct.slice(3, 15).map((element,index) => {
                         return (
                             <div key={index} onClick={() => router.push("/discovery/" + element.batchNo)} className="cursor-pointer bg-gray-100 m-auto w-full h-full sm:h-52" style={{backgroundImage: 'linear-gradient(to bottom, transparent 0%, black 100%), url(' + [element.imageUrl !== "" ? element.imageUrl : ('https://picsum.photos/seed/' + element.batchNo + '1/2000/1000')] + ')', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
                                 <div className="flex flex-row items-end h-full w-full">
