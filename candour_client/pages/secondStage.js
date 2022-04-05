@@ -14,7 +14,7 @@ import { Divider } from "antd";
 import { useRouter } from "next/router";
 import { LoadingOutlined } from "@ant-design/icons";
 
-function newbatch(props) {
+function Newbatch(props) {
     const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
     const [state, setState] = useState({
         web3: null,
@@ -29,8 +29,8 @@ function newbatch(props) {
     const [electricity, setElectricity] = useState("");
     const [toxicWaste, setToxicWaste] = useState("");
     const [batchNo, setBatchNo] = useState("");
-    const [productName,setProductName] = useState("")
-    const [description,setDescription] = useState("")
+    const [productName, setProductName] = useState("");
+    const [description, setDescription] = useState("");
     const [transactionPassed, setTransactionPassed] = useState(false);
     const router = useRouter();
     const {
@@ -52,13 +52,15 @@ function newbatch(props) {
             .send({ from: accounts[0], gasPrice: "200" });
         setTransactionPassed(true);
         const indexerData = {
+            location_two: fabricLocation,
             batchNo: batchNo,
             water_consumption: waterUsed,
             electricity_used: electricity,
             effluent_released: toxicWaste,
-            productName:productName,
-            description:description,
-            imageUrl:"https://www.bfgcdn.com/1500_1500_90/016-7143-1411/patagonia-p-6-logo-responsibili-tee-t-shirt.jpg"
+            productName: productName,
+            description: description,
+            imageUrl:
+                "https://www.bfgcdn.com/1500_1500_90/016-7143-1411/patagonia-p-6-logo-responsibili-tee-t-shirt.jpg",
         };
         axios
             .post("https://candour-indexer.herokuapp.com/product", indexerData)
@@ -101,7 +103,10 @@ function newbatch(props) {
             style={{ backgroundPosition: "left top" }}
         >
             <div className="grid grid-cols-6 gap-4 pb-6">
-                <div className="col-start-1 col-span-2 pl-5">
+                <div
+                    onClick={() => router.push("/")}
+                    className="cursor-pointer col-start-1 col-span-2 pl-5"
+                >
                     <img src="/navbarlogo.png" width={80} height="auto" />
                 </div>
                 <div
@@ -125,7 +130,7 @@ function newbatch(props) {
                         width="16"
                         height="16"
                         fill="currentColor"
-                        class="cursor-pointer ml-0.5 mb-0.5 item-center inline bi bi-question-circle-fill"
+                        className="cursor-pointer ml-0.5 mb-0.5 item-center inline bi bi-question-circle-fill"
                         viewBox="0 0 16 16"
                     >
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z" />
@@ -221,106 +226,106 @@ function newbatch(props) {
                         <div className="w-full">
                             <div className="flex-container">
                                 <div className="flex-container pl-2">
-                                    <div class="form-check">
+                                    <div className="form-check">
                                         <input
-                                            class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                            className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                             type="checkbox"
                                             value=""
                                             id="flexCheckDefault"
                                         />
                                         <label
-                                            class="block form-check-label text-gray-800 text-sm"
-                                            for="flexCheckDefault"
+                                            className="block form-check-label text-gray-800 text-sm"
+                                            htmlFor="flexCheckDefault"
                                         >
                                             We do not use any child labour in
                                             our production.
                                         </label>
                                     </div>
-                                    <div class="form-check">
+                                    <div className="form-check">
                                         <input
-                                            class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                            className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                             type="checkbox"
                                             value=""
                                             id="flexCheckChecked"
                                         />
                                         <label
-                                            class="block form-check-label text-gray-800"
-                                            for="flexCheckChecked"
+                                            className="block form-check-label text-gray-800"
+                                            htmlFor="flexCheckChecked"
                                         >
                                             We respect the personal dignity,
                                             privacy and rights of workers.
                                         </label>
                                     </div>
-                                    <div class="form-check">
+                                    <div className="form-check">
                                         <input
-                                            class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                            className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                             type="checkbox"
                                             value=""
                                             id="flexCheckChecked"
                                         />
                                         <label
-                                            class="block form-check-label text-gray-800"
-                                            for="flexCheckChecked"
+                                            className="block form-check-label text-gray-800"
+                                            htmlFor="flexCheckChecked"
                                         >
                                             We have a non-discriminatory hiring
                                             process.
                                         </label>
                                     </div>
-                                    <div class="form-check">
+                                    <div className="form-check">
                                         <input
-                                            class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                            className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                             type="checkbox"
                                             value=""
                                             id="flexCheckChecked"
                                         />
                                         <label
-                                            class="block form-check-label text-gray-800"
-                                            for="flexCheckChecked"
+                                            className="block form-check-label text-gray-800"
+                                            htmlFor="flexCheckChecked"
                                         >
                                             We minimise and dispose of waste
                                             responsibly.
                                         </label>
                                     </div>
-                                    <div class="form-check">
+                                    <div className="form-check">
                                         <input
-                                            class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                            className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                             type="checkbox"
                                             value=""
                                             id="flexCheckChecked"
                                         />
                                         <label
-                                            class="block form-check-label text-gray-800"
-                                            for="flexCheckChecked"
+                                            className="block form-check-label text-gray-800"
+                                            htmlFor="flexCheckChecked"
                                         >
                                             We recycle water during our
                                             production process.
                                         </label>
                                     </div>
-                                    <div class="form-check">
+                                    <div className="form-check">
                                         <input
-                                            class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                            className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                             type="checkbox"
                                             value=""
                                             id="flexCheckChecked"
                                         />
                                         <label
-                                            class="block form-check-label text-gray-800"
-                                            for="flexCheckChecked"
+                                            className="block form-check-label text-gray-800"
+                                            htmlFor="flexCheckChecked"
                                         >
                                             We use renewable energy (i.e. Solar
                                             panels) where we can.
                                         </label>
                                     </div>
-                                    <div class="form-check w-full">
+                                    <div className="form-check w-full">
                                         <input
-                                            class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                            className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                             type="checkbox"
                                             value=""
                                             id="flexCheckChecked"
                                         />
                                         <label
-                                            class="block form-check-label text-gray-800"
-                                            for="flexCheckChecked"
+                                            className="block form-check-label text-gray-800"
+                                            htmlFor="flexCheckChecked"
                                         >
                                             If any, animals involved are treated
                                             in accordance with EC requirements.
@@ -525,4 +530,4 @@ function newbatch(props) {
     );
 }
 
-export default newbatch;
+export default Newbatch;

@@ -56,7 +56,7 @@ a {
 
   /* CSS that should be displayed if width is equal to or less than 1024px goes here */
   .map-container {
-    height: 400px !important;
+    height: 600px !important;
   }
 }
 

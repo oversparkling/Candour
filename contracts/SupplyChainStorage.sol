@@ -55,18 +55,36 @@ contract SupplyChainStorage {
         return batchNo;
     }
 
-    function getAllDetails(address batchNo) public returns (
-        string memory _fertiliser,
-        string memory _water,
-        string memory _deforestation,
-        string memory _biowaste,
-        string memory water1,
-        string memory electricity1,
-        string memory toxicWaste1
-    ){
+    function getAllDetails(address batchNo)
+        public
+        returns (
+            string memory _fertiliser,
+            string memory _water,
+            string memory _deforestation,
+            string memory _biowaste,
+            string memory water1,
+            string memory electricity1,
+            string memory toxicWaste1
+        )
+    {
         cottonHarvester memory tmpData = batchCottonHarvester[batchNo];
         fabricManufacturer memory tmpData1 = batchFabricManufacturer[batchNo];
-        
+        _fertiliser = tmpData.fertiliser;
+        _water = tmpData.water;
+        _deforestation = tmpData.deforestation;
+        _biowaste = tmpData.biowaste;
+        water1 = tmpData1.water;
+        electricity1 = tmpData1.electricity;
+        toxicWaste1 = tmpData1.toxicWaste;
+        return (
+            _fertiliser,
+            _water,
+            _deforestation,
+            _biowaste,
+            water1,
+            electricity1,
+            toxicWaste1
+        );
     }
 
     //Requires the batchNo which is the identifer for the individual structs
@@ -96,7 +114,9 @@ contract SupplyChainStorage {
         returns (cottonHarvester[] memory result)
     {
         uint256 length = batchNoArray.length;
-        cottonHarvester[] memory cottonHarvesterArray = new cottonHarvester[](length);
+        cottonHarvester[] memory cottonHarvesterArray = new cottonHarvester[](
+            length
+        );
         for (uint256 i = 0; i < batchNoArray.length; i++) {
             cottonHarvester memory basicDetail = batchCottonHarvester[
                 batchNoArray[i]
@@ -118,11 +138,7 @@ contract SupplyChainStorage {
     {
         fabricManufacturer memory tmpData = batchFabricManufacturer[_batchNo];
 
-        return (
-            tmpData.water,
-            tmpData.electricity,
-            tmpData.toxicWaste
-        );
+        return (tmpData.water, tmpData.electricity, tmpData.toxicWaste);
     }
 
     //Requires the batchNo which is the identifer for the individual structs

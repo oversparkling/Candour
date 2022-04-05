@@ -20,6 +20,16 @@ contract ClothingSupplyChain {
         string toxicWaste
     );
 
+    event RetrievedAllDetails(
+        string _fertiliser,
+        string _water,
+        string _deforestation,
+        string _biowaste,
+        string water1,
+        string electricity1,
+        string toxicWaste1
+    );
+
     event ShirtManufactured(address indexed user, address indexed batchNo);
     event RetrievedAll(
         address indexed user,
@@ -93,9 +103,10 @@ contract ClothingSupplyChain {
             string memory toxicWaste1
         )
     {
-        supplyChainStorage.getAllDetails(
+        (_fertiliser, _water, _deforestation, _biowaste, water1, electricity1, toxicWaste1) = supplyChainStorage.getAllDetails(
             batchNo
         );
+        emit RetrievedAllDetails(_fertiliser, _water, _deforestation, _biowaste, water1, electricity1, toxicWaste1);
     }
 
     function setFabricDetails(
