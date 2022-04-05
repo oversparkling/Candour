@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState, useRef } from "react";
-import ClothingSupplyChain from "../../build/contracts/ClothingSupplyChain.json";
+import ClothingSupplyChain from "../contracts/ClothingSupplyChain.json";
 import detectEthereumProvider from "@metamask/detect-provider";
 import {useRouter} from "next/router";
 import Web3 from "web3";

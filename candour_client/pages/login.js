@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState, Fragment, useRef } from "react";
-import ClothingSupplyChain from "../../build/contracts/ClothingSupplyChain.json";
+import ClothingSupplyChain from "../contracts/ClothingSupplyChain.json";
 import detectEthereumProvider from "@metamask/detect-provider";
 import Image from "next/image";
 import { useRouter } from "next/router";

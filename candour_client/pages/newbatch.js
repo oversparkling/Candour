@@ -1,7 +1,7 @@
 import React from "react";
 import QRCode from "qrcode.react";
 import { Fragment, useRef, useState, useEffect } from "react";
-import ClothingSupplyChain from "../../build/contracts/ClothingSupplyChain.json";
+import ClothingSupplyChain from "../contracts/ClothingSupplyChain.json";
 import { Spin } from "antd";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationIcon } from "@heroicons/react/outline";

@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { Component, useEffect, useState } from "react";
-import ClothingSupplyChain from "../../build/contracts/ClothingSupplyChain.json";
+import ClothingSupplyChain from "../contracts/ClothingSupplyChain.json";
 import detectEthereumProvider from "@metamask/detect-provider";
 import Image from "next/image";
 import Web3 from "web3";
