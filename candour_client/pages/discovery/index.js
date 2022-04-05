@@ -3,7 +3,7 @@ import React, { Component, useEffect, useState } from "react";
 import { Button, Divider, Input, Skeleton, Timeline, Carousel } from "antd";
 import axios from "axios";
 
-function pid() {
+function Pid() {
     const contentStyle = {
         height: '300px',
         color: '#fff',
@@ -37,9 +37,9 @@ function pid() {
                 <h3 className="font-header text-xl tracking-tighter mb-1 text-black-900 lg:text-2xl lg:pt-2">Popular Products</h3>
                 <p className="text-black-800 text-xs tracking-tighter leading-none font-prints lg:text-sm"></p>
                 <Carousel autoplay className="w-full mb-3 mt-4" dotPosition={"top"}>
-                    {allProduct && allProduct.length > 0 && allProduct.map((element) => {
+                    {allProduct && allProduct.length > 0 && allProduct.map((element,index) => {
                         return (
-                            <div>
+                            <div key = {index}>
                                 <div onClick={() => router.push("/discovery/" + element.batchNo)} style={{
                                     backgroundImage: 'linear-gradient(to bottom, transparent 0%, black 100%), url(' + 'https://picsum.photos/seed/' + element.batchNo + '1/2000/1000' + ')',
                                     backgroundSize: 'cover',
@@ -58,9 +58,9 @@ function pid() {
                 </svg></h3>
                 <p className="text-black-800 text-xs tracking-tighter leading-none font-prints lg:text-sm">Discover and find out more about these sustainable fashion products.</p>
                 <div className="text-left mt-0 sm:flex sm:grid sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
-                    {allProduct && allProduct.length > 0 && allProduct.slice(0, 15).map((element) => {
+                    {allProduct && allProduct.length > 0 && allProduct.slice(0, 15).map((element,index) => {
                         return (
-                            <div onClick={() => router.push("/discovery/" + element.batchNo)} className="cursor-pointer bg-gray-100 m-auto w-full h-full sm:h-52" style={{backgroundImage: 'linear-gradient(to bottom, transparent 0%, black 100%), url(' + [element.imageUrl !== "" ? element.imageUrl : ('https://picsum.photos/seed/' + element.batchNo + '1/2000/1000')] + ')', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
+                            <div key={index} onClick={() => router.push("/discovery/" + element.batchNo)} className="cursor-pointer bg-gray-100 m-auto w-full h-full sm:h-52" style={{backgroundImage: 'linear-gradient(to bottom, transparent 0%, black 100%), url(' + [element.imageUrl !== "" ? element.imageUrl : ('https://picsum.photos/seed/' + element.batchNo + '1/2000/1000')] + ')', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
                                 <div className="flex flex-row items-end h-full w-full">
                                     <div className="flex flex-col w-full pb-3 pt-10 px-3 bg-gradient-to-t from-black text-white">
                                         <h3 className="text-base font-bold leading-5 uppercase text-white">{element.productName === "" ? "Supima Cotton Shirt" : element.productName}</h3>
@@ -68,7 +68,7 @@ function pid() {
                                             <div className="flex flex-row">
                                                 <div className="w-max inline-flex items-center">
                                                     <svg className="w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                     </svg>
                                                     <span className="text-xs ml-1 antialiased">{element.last_updated}</span>
                                                 </div>
@@ -86,4 +86,4 @@ function pid() {
     );
 }
 
-export default pid;
+export default Pid;
