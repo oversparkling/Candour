@@ -47,7 +47,7 @@ const getWeb3 = async (isFirstLoad) => {
                     console.log("Transaction rejected by user:", err);
                 }
             }
-        } else if (window.web3) {
+        } else if (window && window.web3) {
             web3 = new Web3(window.web3.currentProvider);
         } else {
             window.alert(
