@@ -266,7 +266,7 @@ const App = () => {
                         <path d="M7 12h1v3h4v1H7v-4Zm9 2v2h-3v-1h2v-1h1Z" />
                     </svg>
                     <strong className="font-bold">Batch No.: </strong>
-                    <span className="block sm:inline">
+                    <span className="block sm:inline overflow-hidden">
                         {batch ? batch.batchNo : ""}
                     </span>
                 </div>
