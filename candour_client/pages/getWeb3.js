@@ -37,7 +37,7 @@ import Web3 from "web3";
 const getWeb3 = async (isFirstLoad) => {
     try {
         let web3;
-        if (window.ethereum) {
+        if (window && window.ethereum) {
             web3 = new Web3(window.ethereum);
             // Ask User permission to connect to Metamask
             if (!isFirstLoad) {
